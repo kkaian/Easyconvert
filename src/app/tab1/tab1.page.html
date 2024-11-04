@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Conversão de Moedas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>De:</ion-label>
+    <ion-select placeholder="Selecione uma moeda">
+      <ion-select-option value="USD">Dólar</ion-select-option>
+      <ion-select-option value="EUR">Euro</ion-select-option>
+      <ion-select-option value="BRL">Real</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Para:</ion-label>
+    <ion-select placeholder="Selecione uma moeda">
+      <ion-select-option value="USD">Dólar</ion-select-option>
+      <ion-select-option value="EUR">Euro</ion-select-option>
+      <ion-select-option value="BRL">Real</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Valor</ion-label>
+    <ion-input type="number" placeholder="Digite o valor"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="convertCurrency()">Converter</ion-button>
+
+  <ion-item *ngIf="convertedValue">
+    <ion-label>Valor Convertido: {{ convertedValue }}</ion-label>
+  </ion-item>
+</ion-content>
