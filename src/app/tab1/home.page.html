@@ -7,7 +7,7 @@
 <ion-content>
   <ion-item>
     <ion-label>De:</ion-label>
-    <ion-select placeholder="Selecione uma moeda">
+    <ion-select placeholder="Selecione uma moeda" [(ngModel)]="moedaOrigem">
       <ion-select-option value="USD">Dólar</ion-select-option>
       <ion-select-option value="EUR">Euro</ion-select-option>
       <ion-select-option value="BRL">Real</ion-select-option>
@@ -16,7 +16,7 @@
 
   <ion-item>
     <ion-label>Para:</ion-label>
-    <ion-select placeholder="Selecione uma moeda">
+    <ion-select placeholder="Selecione uma moeda" [(ngModel)]="moedaDestino">
       <ion-select-option value="USD">Dólar</ion-select-option>
       <ion-select-option value="EUR">Euro</ion-select-option>
       <ion-select-option value="BRL">Real</ion-select-option>
@@ -25,12 +25,12 @@
 
   <ion-item>
     <ion-label position="stacked">Valor</ion-label>
-    <ion-input type="number" placeholder="Digite o valor"></ion-input>
+    <ion-input type="number" placeholder="Digite o valor" [(ngModel)]="valor"></ion-input>
   </ion-item>
 
   <ion-button expand="full" (click)="convertCurrency()">Converter</ion-button>
 
   <ion-item *ngIf="convertedValue">
-    <ion-label>Valor Convertido: {{ convertedValue }}</ion-label>
+    <ion-label>Valor Convertido: {{ convertedValue | number:'1.2-2' }}</ion-label>
   </ion-item>
 </ion-content>
