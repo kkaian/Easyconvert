@@ -5,11 +5,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-list *ngIf="history.length > 0; else noHistory">
     <ion-item *ngFor="let item of history">
       <ion-label>
-        {{ item.date }}: {{ item.from }} para {{ item.to }} - {{ item.amount }}
+        <p>{{ item.date }}</p>
+        <h2>{{ item.amount }} {{ item.from }} → {{ item.to }}</h2>
+        <p>Convertido: {{ item.convertedValue | number:'1.2-2' }} {{ item.to }}</p>
       </ion-label>
     </ion-item>
   </ion-list>
+  <ng-template #noHistory>
+    <ion-label class="ion-padding">Nenhum histórico de conversão encontrado.</ion-label>
+  </ng-template>
 </ion-content>

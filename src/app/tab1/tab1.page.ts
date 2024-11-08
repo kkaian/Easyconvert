@@ -7,7 +7,6 @@ import { CurrencyService } from '../currency.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage {
-  // Moedas selecionadas e valor para converter
   moedaOrigem: string = '';
   moedaDestino: string = '';
   valor: number = 0;
@@ -15,21 +14,32 @@ export class HomePage {
 
   constructor(private currencyService: CurrencyService) {}
 
+  // Método para inverter as moedas de origem e destino
+  inverterMoedas() {
+    const temp = this.moedaOrigem;
+    this.moedaOrigem = this.moedaDestino;
+    this.moedaDestino = temp;
+  }
+
   convertCurrency() {
-    // Verifica se os campos estão preenchidos
     if (!this.moedaOrigem || !this.moedaDestino || !this.valor) {
       alert('Por favor, preencha todos os campos!');
       return;
     }
 
-    // Chama o serviço para obter a taxa de câmbio
     this.currencyService.getExchangeRates(this.moedaOrigem).subscribe(
       (data) => {
-        // Obtém a taxa de câmbio entre a moeda de origem e a moeda de destino
         const taxa = data.conversion_rates[this.moedaDestino];
         if (taxa) {
-          // Calcula o valor convertido
           this.convertedValue = this.valor * taxa;
+          const historyItem = {
+            date: new Date().toISOString().split('T')[0],
+            from: this.moedaOrigem,
+            to: this.moedaDestino,
+            amount: this.valor,
+            convertedValue: this.convertedValue
+          };
+          this.currencyService.saveConversionHistory(historyItem); // Salva e emite o evento
         } else {
           alert('Não foi possível encontrar a taxa de câmbio.');
         }
