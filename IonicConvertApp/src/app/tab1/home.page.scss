@@ -1,0 +1,52 @@
+/* Fundo branco */
+
+  
+  /* Centralizar o conteúdo */
+ 
+  /* Estilo do botão "Converter" */
+  .button-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center; /* Centraliza o botão */
+  }
+  
+  ion-button {
+    --background: #6a0dad; /* Cor roxa */
+    --background-hover: #7b1fac; /* Tom roxo mais claro ao passar o mouse */
+    --background-activated: #5a008b; /* Tom roxo mais escuro ao clicar */
+    --color: #ffffff; /* Texto branco */
+  }
+  
+  /* Valor convertido destacado */
+  .converted-value-container {
+    text-align: center; /* Centraliza o conteúdo */
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  .converted-value-title {
+    font-size: 1rem;
+    padding-bottom: 15px;
+    color: #ffffff; /* Cor roxa */
+    font-weight: bold;
+  }
+  
+  .converted-value {
+    font-size: 2rem;
+    color: #ffffff; /* Preto para destaque */
+    font-weight: bold;
+    display: inline-block;
+  }
+  
+  /* Estilo responsivo para telas menores */
+  @media (max-width: 600px) {
+    .conversion-container {
+      padding: 10px;
+    }
+  
+    .converted-value {
+      font-size: 1.5rem; /* Ajusta o tamanho para telas menores */
+    }
+  }
+  
