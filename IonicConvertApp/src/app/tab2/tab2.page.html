@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Histórico de Conversão</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="clearHistory()">
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
