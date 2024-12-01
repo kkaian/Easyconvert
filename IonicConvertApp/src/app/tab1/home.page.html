@@ -5,12 +5,16 @@
       <ion-button size="medium" (click)="inverterMoedas()" color="tertiary">
         <ion-icon name="swap-horizontal-outline"></ion-icon>
       </ion-button>
+      <ion-button size="medium" (click)="openNotificationPopup()" color="tertiary">
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding custom-content">
   <div class="conversion-container">
+    <!-- Campos de seleção -->
     <ion-item>
       <ion-label>De:</ion-label>
       <ion-select placeholder="Selecione uma moeda" [(ngModel)]="moedaOrigem">
@@ -22,7 +26,7 @@
 
     <ion-item>
       <ion-label>Para:</ion-label>
-      <ion-select placeholder="Selecione uma moeda" color="tertiary" [(ngModel)]="moedaDestino">
+      <ion-select placeholder="Selecione uma moeda" [(ngModel)]="moedaDestino">
         <ion-select-option value="USD">Dólar</ion-select-option>
         <ion-select-option value="EUR">Euro</ion-select-option>
         <ion-select-option value="BRL">Real</ion-select-option>
@@ -34,18 +38,55 @@
       <ion-input type="number" placeholder="Digite o valor" [(ngModel)]="valor"></ion-input>
     </ion-item>
 
+    <!-- Botão de converter -->
     <div class="button-container">
       <ion-button shape="round" size="large" (click)="convertCurrency()" color="tertiary">
-       <ion-label color="dark">Converter</ion-label>
+        <ion-label color="dark">Converter</ion-label>
       </ion-button>
     </div>
 
-    <ion-item *ngIf="convertedValue" lines="none" class="converted-value-container">
+    <!-- Valor convertido -->
+    <ion-item *ngIf="convertedValue !== null" lines="none" class="converted-value-container">
       <ion-label>
         <div class="converted-value-title">Valor Convertido:</div>
-        <div class="converted-value">{{ convertedValue | number:'1.2-2' }}</div>
+        <div class="converted-value">
+          {{ convertedSymbol }} {{ convertedValue | number:'1.2-2' }}
+        </div>
       </ion-label>
     </ion-item>
-    
   </div>
+
+  <!-- Pop-up de notificações -->
+  <ion-modal [isOpen]="showNotificationPopup" (ionModalDidDismiss)="closeNotificationPopup()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title aria-setsize="small">Configurações de Notificações</ion-title>
+          <ion-buttons slot="end">
+            <!-- Botão de Fechar com Ícone -->
+            <ion-button color="tertiary" (click)="closeNotificationPopup()">
+              <ion-icon size="large" name="close-outline"></ion-icon> <!-- Ícone de fechar -->
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>Frequência de Atualização</ion-label>
+            <ion-select [(ngModel)]="updateFrequency">
+              <ion-select-option value="A cada hora">A cada hora</ion-select-option>
+              <ion-select-option value="Diariamente">Diariamente</ion-select-option>
+              <ion-select-option value="Semanalmente">Semanalmente</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Notificações de Variações</ion-label>
+            <ion-toggle [(ngModel)]="enableNotifications"></ion-toggle>
+          </ion-item>
+        </ion-list>
+        <ion-button color="tertiary" expand="block" (click)="saveNotificationSettings()">Salvar</ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
