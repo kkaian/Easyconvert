@@ -25,6 +25,12 @@ export class Tab2Page implements OnInit, OnDestroy {
     this.history = storedHistory;
   }
 
+  clearHistory() {
+    // Limpa o histórico do localStorage e a variável local
+    localStorage.removeItem('conversionHistory');
+    this.history = [];
+  }
+
   ngOnDestroy() {
     // Cancela a inscrição para evitar vazamentos de memória
     if (this.conversionSubscription) {
