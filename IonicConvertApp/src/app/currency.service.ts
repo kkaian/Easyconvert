@@ -20,6 +20,6 @@ export class CurrencyService {
     const currentHistory = JSON.parse(localStorage.getItem('conversionHistory') || '[]');
     currentHistory.push(historyItem);
     localStorage.setItem('conversionHistory', JSON.stringify(currentHistory));
+    console.log('Novo histórico de conversão salvo:', historyItem); // Verifique o histórico sendo salvo
     this.conversionAdded.emit(); // Emite o evento para notificar as tabs
-  }
-}
+  }}
