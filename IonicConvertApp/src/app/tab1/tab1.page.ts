@@ -56,7 +56,7 @@ export class HomePage {
         }
       },
       (error) => {
-        alert('Ocorreu um erro ao obter a taxa de câmbio.');
+        alert('Você está offline. Verifique sua conexão com a internet.');
         console.error(error);
       }
     );
