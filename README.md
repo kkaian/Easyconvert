@@ -31,15 +31,12 @@ Execute o app:
 ionic serve
 
 ## 🛠 Pré-requisitos
-Node.js (versão 14 ou superior)
-Ionic CLI
-Navegador atualizado
+- Node.js (versão 14 ou superior)
+- Ionic CLI
+- Navegador atualizado
 
 ## 🤝 Contribuindo
 Contribuições são bem-vindas! Confira o arquivo CONTRIBUTING.md para detalhes sobre como contribuir.
-
-## ✨ Autores
-Seu Nome - Desenvolvedor principal
 
 ## 📜 Licença
 Este projeto está licenciado sob a licença Creative Commons Attribution 4.0 International (CC BY 4.0). Para mais detalhes, leia o arquivo LICENSE.
