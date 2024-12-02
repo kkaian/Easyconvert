@@ -1,8 +1,21 @@
-/* Fundo branco */
+.custom-modal {
+  --width: 80%;   /* Ajustei para 80% da largura */
+  --max-width: 500px;  /* A largura máxima foi aumentada para 500px */
+  --height: auto;
+  --border-radius: 12px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-  
-  /* Centralizar o conteúdo */
- 
+  /* Garantir que o conteúdo interno não ultrapasse */
+  ion-content {
+    padding: 16px;
+  }
+
+  /* Em dispositivos maiores (telas de desktop) */
+  @media (min-width: 768px) {
+    --width: 500px;  /* No desktop, a largura fixa é 500px */
+  }
+}
+
   /* Estilo do botão "Converter" */
   .button-container {
     margin-top: 50px;
