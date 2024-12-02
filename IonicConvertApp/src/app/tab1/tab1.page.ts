@@ -11,12 +11,12 @@ export class HomePage {
   moedaDestino: string = '';
   valor: number = 0;
   convertedValue: number | null = null;
-  convertedSymbol: string = ''; // Símbolo da moeda
+  convertedSymbol: string = ''; 
 
   // Configurações de notificações
   showNotificationPopup: boolean = false;
-  updateFrequency: string = 'Diariamente'; // Frequência de atualização padrão
-  enableNotifications: boolean = false; // Notificações desabilitadas por padrão
+  updateFrequency: string = 'Diariamente'; 
+  enableNotifications: boolean = false; 
 
   constructor(private currencyService: CurrencyService) {}
 
@@ -32,10 +32,10 @@ export class HomePage {
       return;
     }
   
-    // Define o símbolo da moeda de destino antes de mostrar o valor convertido
+    
     this.convertedSymbol = this.getCurrencySymbol(this.moedaDestino);
   
-    // Chama o método para obter taxas de câmbio, levando em consideração se o usuário está online ou offline
+    
     this.currencyService.getExchangeRates(this.moedaOrigem).subscribe(
       (data) => {
         const taxa = data.conversion_rates[this.moedaDestino];
@@ -74,12 +74,12 @@ export class HomePage {
     }
   }
 
-  // Abre o pop-up de notificações
+  
   openNotificationPopup() {
     this.showNotificationPopup = true;
   }
 
-  // Fecha o pop-up de notificações
+  
   closeNotificationPopup() {
     this.showNotificationPopup = false;
   }
