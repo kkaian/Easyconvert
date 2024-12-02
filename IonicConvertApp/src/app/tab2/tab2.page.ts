@@ -16,7 +16,7 @@ export class Tab2Page implements OnInit, OnDestroy {
   ngOnInit() {
     this.loadConversionHistory();
     this.conversionSubscription = this.currencyService.conversionAdded.subscribe(() => {
-      this.loadConversionHistory(); // Atualiza automaticamente ao receber nova conversão
+      this.loadConversionHistory(); 
     });
   }
 
@@ -26,13 +26,13 @@ export class Tab2Page implements OnInit, OnDestroy {
   }
 
   clearHistory() {
-    // Limpa o histórico do localStorage e a variável local
+    
     localStorage.removeItem('conversionHistory');
     this.history = [];
   }
 
   ngOnDestroy() {
-    // Cancela a inscrição para evitar vazamentos de memória
+    
     if (this.conversionSubscription) {
       this.conversionSubscription.unsubscribe();
     }
