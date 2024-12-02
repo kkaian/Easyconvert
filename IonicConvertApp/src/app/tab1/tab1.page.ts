@@ -11,10 +11,15 @@ export class HomePage {
   moedaDestino: string = '';
   valor: number = 0;
   convertedValue: number | null = null;
+  convertedSymbol: string = ''; // Símbolo da moeda
+
+  // Configurações de notificações
+  showNotificationPopup: boolean = false;
+  updateFrequency: string = 'Diariamente'; // Frequência de atualização padrão
+  enableNotifications: boolean = false; // Notificações desabilitadas por padrão
 
   constructor(private currencyService: CurrencyService) {}
 
-  // Método para inverter as moedas de origem e destino
   inverterMoedas() {
     const temp = this.moedaOrigem;
     this.moedaOrigem = this.moedaDestino;
@@ -26,20 +31,26 @@ export class HomePage {
       alert('Por favor, preencha todos os campos!');
       return;
     }
-
+  
+    // Define o símbolo da moeda de destino antes de mostrar o valor convertido
+    this.convertedSymbol = this.getCurrencySymbol(this.moedaDestino);
+  
+    // Chama o método para obter taxas de câmbio, levando em consideração se o usuário está online ou offline
     this.currencyService.getExchangeRates(this.moedaOrigem).subscribe(
       (data) => {
         const taxa = data.conversion_rates[this.moedaDestino];
         if (taxa) {
           this.convertedValue = this.valor * taxa;
-          const historyItem = {
-            date: new Date().toISOString().split('T')[0],
+  
+          // Salva o histórico da conversão
+          const conversionHistoryItem = {
+            date: new Date().toISOString(),
             from: this.moedaOrigem,
             to: this.moedaDestino,
             amount: this.valor,
             convertedValue: this.convertedValue
           };
-          this.currencyService.saveConversionHistory(historyItem); // Salva e emite o evento
+          this.currencyService.saveConversionHistory(conversionHistoryItem);
         } else {
           alert('Não foi possível encontrar a taxa de câmbio.');
         }
@@ -49,5 +60,41 @@ export class HomePage {
         console.error(error);
       }
     );
+  }
+  getCurrencySymbol(currency: string): string {
+    switch (currency) {
+      case 'USD':
+        return '$';
+      case 'EUR':
+        return '€';
+      case 'BRL':
+        return 'R$';
+      default:
+        return '';
+    }
+  }
+
+  // Abre o pop-up de notificações
+  openNotificationPopup() {
+    this.showNotificationPopup = true;
+  }
+
+  // Fecha o pop-up de notificações
+  closeNotificationPopup() {
+    this.showNotificationPopup = false;
+  }
+
+  // Salva as configurações de notificações
+  saveNotificationSettings() {
+    console.log('Configurações salvas:');
+    console.log('Frequência de Atualização:', this.updateFrequency);
+    console.log('Notificações Habilitadas:', this.enableNotifications);
+    this.closeNotificationPopup();
+
+    if (this.enableNotifications) {
+      alert('Notificações habilitadas com a frequência: ' + this.updateFrequency);
+    } else {
+      alert('Notificações desabilitadas.');
+    }
   }
 }
