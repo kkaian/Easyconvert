@@ -1,39 +1,46 @@
-.custom-modal {
-  --width: 80%;   /* Ajustei para 80% da largura */
-  --max-width: 500px;  /* A largura máxima foi aumentada para 500px */
-  --height: auto;
-  --border-radius: 12px;
-  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-  /* Garantir que o conteúdo interno não ultrapasse */
-  ion-content {
-    padding: 16px;
+ 
+  .custom-modal {
+    --width: 90%;
+    --max-width: 400px;
+    --height: auto;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    
+    ion-content {
+      padding: 16px;
+    }
+  
+   
+    @media (min-width: 768px) {
+      --width: 400px;
+    }
   }
 
-  /* Em dispositivos maiores (telas de desktop) */
-  @media (min-width: 768px) {
-    --width: 500px;  /* No desktop, a largura fixa é 500px */
-  }
-}
-
-  /* Estilo do botão "Converter" */
+  
   .button-container {
     margin-top: 50px;
     margin-bottom: 50px;
     display: flex;
-    justify-content: center; /* Centraliza o botão */
+    justify-content: center; 
   }
   
   ion-button {
-    --background: #6a0dad; /* Cor roxa */
-    --background-hover: #7b1fac; /* Tom roxo mais claro ao passar o mouse */
-    --background-activated: #5a008b; /* Tom roxo mais escuro ao clicar */
-    --color: #ffffff; /* Texto branco */
+    --background: #6a0dad; 
+    --background-hover: #7b1fac; 
+    --background-activated: #5a008b; 
+    --color: #ffffff; 
   }
   
-  /* Valor convertido destacado */
+ 
   .converted-value-container {
-    text-align: center; /* Centraliza o conteúdo */
+    text-align: center; 
     margin-top: 50px;
     margin-bottom: 50px;
   }
@@ -41,25 +48,25 @@
   .converted-value-title {
     font-size: 1rem;
     padding-bottom: 15px;
-    color: #ffffff; /* Cor roxa */
+    color: #ffffff; 
     font-weight: bold;
   }
   
   .converted-value {
     font-size: 2rem;
-    color: #ffffff; /* Preto para destaque */
+    color: #ffffff; 
     font-weight: bold;
     display: inline-block;
   }
   
-  /* Estilo responsivo para telas menores */
+  
   @media (max-width: 600px) {
     .conversion-container {
       padding: 10px;
     }
   
     .converted-value {
-      font-size: 1.5rem; /* Ajusta o tamanho para telas menores */
+      font-size: 1.5rem; 
     }
   }
   
